@@ -28,6 +28,9 @@ jobs:
       - name: Format Check
         run: cargo fmt --check --verbose
 
+      - name: Lint
+        run: cargo clippy --verbose
+
       - name: Build
         run: cargo build --verbose
 
