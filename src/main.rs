@@ -1,19 +1,10 @@
-// use crate::add::add;
+use std::{fs::File, io::Read};
 
-mod add;
+mod zip_test;
 
 fn main() {
-    let c = a();
-    match c {
-        Some(o) => println!("{}", o),
-        None => println!("hei"),
-    }
-}
-
-fn a() -> Option<i32> {
-    // println!("{}", add(1, 2));
-
-    let a: Option<i32> = None;
-    let b = a?;
-    Some(b)
+    let mut file = File::open("./sample_data/pizza.sog").unwrap();
+    let mut bytes = Vec::new();
+    let _size = file.read_to_end(&mut bytes).unwrap();
+    zip_test::zip_test(&bytes)
 }
