@@ -8,7 +8,7 @@ mod zip_test;
 
 mod types;
 
-fn main() -> Result<(), ZipError> {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut file = File::open("./sample_data/pizza.sog").unwrap();
     let mut bytes = Vec::new();
     let _size = file.read_to_end(&mut bytes).unwrap();
