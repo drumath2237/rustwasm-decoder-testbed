@@ -7,9 +7,9 @@ import sogPath from "../../sample_data/pizza.sog?url";
 async function main() {
   fetch(sogPath).then((res) => res.arrayBuffer()).then((data) => {
     const sogData = new Uint8Array(data);
-    console.log(sogData.length);
-
-    const files = zip_test_wasm(sogData);
+    const files = zip_test_wasm(sogData).map((m) => {
+      return { name: m.name, data: m.data };
+    });
     console.log(files);
   });
 }

@@ -1,9 +1,11 @@
-use std::{fs::File, io::Read};
+// use std::{fs::File, io::Read};
 
 use wasm_bindgen::prelude::wasm_bindgen;
-use zip::result::ZipError;
 
-use crate::{types::metajson::MetaJsonType, zip_test::SogFile};
+use crate::zip_test::SogFile;
+// use zip::result::ZipError;
+
+// use crate::{types::metajson::MetaJsonType, zip_test::SogFile};
 
 mod zip_test;
 
@@ -34,32 +36,32 @@ pub fn zip_test_wasm(data: Vec<u8>) -> Vec<FileInSog> {
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let mut file = File::open("./sample_data/pizza.sog").unwrap();
-    let mut bytes = Vec::new();
-    let _size = file.read_to_end(&mut bytes).unwrap();
-    let files = zip_test::zip_test(&bytes)?;
+    // let mut file = File::open("./sample_data/pizza.sog").unwrap();
+    // let mut bytes = Vec::new();
+    // let _size = file.read_to_end(&mut bytes).unwrap();
+    // let files = zip_test::zip_test(&bytes)?;
 
-    let sog_file = files
-        .iter()
-        .find(|f| match f {
-            SogFile::MetaJson(_) => true,
-            SogFile::Image {
-                data: _,
-                filename: _,
-            } => false,
-        })
-        .ok_or(ZipError::FileNotFound)?;
+    // let sog_file = files
+    //     .iter()
+    //     .find(|f| match f {
+    //         SogFile::MetaJson(_) => true,
+    //         SogFile::Image {
+    //             data: _,
+    //             filename: _,
+    //         } => false,
+    //     })
+    //     .ok_or(ZipError::FileNotFound)?;
 
-    match sog_file {
-        SogFile::MetaJson(json_str) => {
-            let json: MetaJsonType = serde_json::from_str(&json_str).unwrap();
-            println!("{:?}", json.means.files)
-        }
-        SogFile::Image {
-            filename: _,
-            data: _,
-        } => println!("no"),
-    }
+    // match sog_file {
+    //     SogFile::MetaJson(json_str) => {
+    //         let json: MetaJsonType = serde_json::from_str(&json_str).unwrap();
+    //         println!("{:?}", json.means.files)
+    //     }
+    //     SogFile::Image {
+    //         filename: _,
+    //         data: _,
+    //     } => println!("no"),
+    // }
 
     Ok(())
 }
