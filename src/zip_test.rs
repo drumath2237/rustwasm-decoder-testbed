@@ -3,11 +3,6 @@ use std::io::Read;
 
 use zip::{ZipArchive, result::ZipError};
 
-pub struct RawFile {
-    pub name: String,
-    pub data: Vec<u8>,
-}
-
 pub enum SogFile {
     MetaJson(String),
     Image { filename: String, data: Vec<u8> },
