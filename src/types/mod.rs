@@ -1,1 +1,1 @@
-// pub mod metajson;
+pub mod metajson;
