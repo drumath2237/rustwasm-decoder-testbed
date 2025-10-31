@@ -1,6 +1,6 @@
 cargo build --target wasm32-unknown-unknown --release
 
-rm -r ./wasm-test/src/wasm
+# rm -r ./wasm-test/src/wasm
 
 wasm-bindgen ./target/wasm32-unknown-unknown/debug/rustwasm_decoder_testbed.wasm --out-dir ./wasm-test/src/wasm --out-name sog-wasm
 

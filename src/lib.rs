@@ -34,3 +34,8 @@ pub fn zip_test_wasm(data: Vec<u8>) -> Vec<FileInSog> {
 pub fn deserialize_metajson(json: &str) -> MetaJsonType {
     serde_json::from_str(json).unwrap()
 }
+
+#[wasm_bindgen]
+pub fn test_func() -> String {
+    "aaa".to_string()
+}
