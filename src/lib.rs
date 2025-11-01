@@ -1,3 +1,5 @@
+use image_webp::WebPDecoder;
+use std::io::Cursor;
 use wasm_bindgen::prelude::wasm_bindgen;
 
 use crate::{types::metajson::MetaJsonType, zip_test::SogFile};
@@ -38,4 +40,15 @@ pub fn deserialize_metajson(json: &str) -> MetaJsonType {
 #[wasm_bindgen]
 pub fn test_func() -> String {
     "aaa".to_string()
+}
+
+#[wasm_bindgen]
+pub fn decode_webp(buf: &[u8]) -> Vec<u8> {
+    let cursor = Cursor::new(buf);
+    let mut decoder = WebPDecoder::new(cursor).unwrap();
+    let output_size = decoder.output_buffer_size().unwrap();
+    let mut pixels = vec![0; output_size];
+    decoder.read_image(&mut pixels).unwrap();
+
+    pixels
 }
